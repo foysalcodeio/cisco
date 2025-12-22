@@ -1,4 +1,5 @@
-# Cisco Router – Running Configuration Explanation (Bangla)
+
+
 
 নিচে দেওয়া `running-config` এর প্রতিটি অংশ **কি কাজ করে** তা সহজ বাংলায় বিস্তারিতভাবে ব্যাখ্যা করা হলো। এটি CCNA / Lab Practice / Interview preparation এর জন্য উপযোগী।
 
