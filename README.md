@@ -1,4 +1,4 @@
-# Cisco Router Basics (IOS)
+# Cisco Router – Running Configuration Explanation (Bangla)
 
 এই README.md ফাইলটি Cisco Router (IOS) এর **basic modes, passwords, configuration, save/reload, এবং interface setup** সহজভাবে বুঝানোর জন্য সাজানো হয়েছে। GitHub এ নোট/রেফারেন্স হিসেবে ব্যবহার করার জন্য উপযুক্ত।
 
