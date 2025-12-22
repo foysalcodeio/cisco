@@ -243,16 +243,3 @@ Dhaka-North(config-if)# description To-LAN-SW
 ---
 
 ## ✅ End Notes
-
-এই README টি **Cisco CCNA / Lab Practice / Exam Prep** এর জন্য perfect reference।
-
-📌 You can extend this with:
-
-* SSH configuration
-* Static & Dynamic Routing
-* VLAN & Trunk
-* NAT
-
----
-
-⭐ If this helps, feel free to fork & star the repo!
