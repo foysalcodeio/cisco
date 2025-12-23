@@ -1,0 +1,41 @@
+এই অবস্থায় একজন সিস্টেম ইঞ্জিনিয়ার হিসেবে মাথায় প্রথমেই যা আসে, তা হলো - এখন ঠান্ডা মাথায় ধাপে ধাপে ট্রাবলশুট শুরু করতে হবে।
+সার্ভারটি Ubuntu তে চলছে, IP হলো 103.19.12.42।
+প্রথম ধাপ, সার্ভার রিচেবল আছে কিনা দেখতে হবে।
+ping 103.19.12.42
+যদি পিং পাওয়া যায়, তাহলে SSH বা iDRAC দিয়ে কানেক্ট হই। আর যদি পিং না আসে, তাহলে বোঝা যায় ফিজিক্যাল সার্ভার ডাউন, নেটওয়ার্ক সমস্যা, অথবা ফায়ারওয়াল ব্লক করে রেখেছে।
+সার্ভারে ঢোকার পর দেখি রিসোর্স ঠিক আছে কিনা - CPU, RAM, Storage সব ঠিকঠাক চলছে কিনা।
+df -h
+free -h
+top
+uptime
+ps aux --sort=-%cpu | head -10
+ps aux --sort=-%mem | head -10
+এরপর সার্ভিসগুলো পরীক্ষা করি। ওয়েব সার্ভার, ডাটাবেজ, অ্যাপ্লিকেশন - সব কিছু সচল আছে কিনা দেখতে হবে।
+systemctl status nginx
+systemctl status apache2
+systemctl status mysql
+systemctl status postgresql
+যদি কিছু বন্ধ থাকে, চালু বা রিস্টার্ট দিই -
+systemctl start apache2
+systemctl restart apache2
+তারপর লগ দেখি, কেন সার্ভিস বন্ধ হয়েছিল -
+journalctl -u apache2 -n 50
+tail -f /var/log/apache2/error.log
+এরপর নেটওয়ার্ক ও কানেক্টিভিটি যাচাই করি।
+netstat -tulpn | grep :80
+netstat -tulpn | grep :3306
+ip addr
+ifconfig
+ip link show
+ufw status
+iptables -L
+curl -I https://google.com
+সবশেষে রুট কজ খোঁজা -
+লগ দেখে বুঝতে হবে ঠিক কোথায় সমস্যা ছিল, কী কারণে সার্ভার ডাউন হলো।
+tail -100 /var/log/syslog
+grep -i error /var/log/syslog
+grep -i fail /var/log/syslog
+tail -f /var/log/apache2/error.log
+tail -f /var/log/mysql/error.log 
+সবশেষে আমি বিশ্বাস করি -একজন সিস্টেম ইঞ্জিনিয়ারের আসল শক্তি হলো “calm under pressure” থাকা।
+সার্ভার ডাউন হওয়া মানেই আতঙ্ক নয়, বরং সেটি শেখার নতুন সুযোগ।
